@@ -3,11 +3,14 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>New Salary Adjustment Calculator</title>
+        <title>การปรับฐานเงินเดือน รอบแรก 2567</title>
+        <link rel="icon" href="images/snow-globe.ico" type="image/x-icon" />
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+        <!-- SweetAlert2 CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11" />
         <style>
-            @import url("https://fonts.googleapis.com/css2?family=Kodchasan:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&family=Niramit:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
+            @import url("https://fonts.googleapis.com/css2?family=Niramit:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 
             .niramit-regular {
                 font-family: "Niramit", sans-serif;
@@ -15,112 +18,276 @@
                 font-style: normal;
             }
 
-            .niramit-bold {
-                font-family: "Niramit", sans-serif;
-                font-weight: 700;
-                font-style: normal;
+            #notes {
+                color: rgb(200, 200, 200);
+                font-size: 80%;
             }
-            .comment {
-            font-size: 50%;
-            text-align: center;
-            padding: 100px;
-            max-width: auto;
-            margin: auto;
-        }
+
+            body {
+               margin-top: 5%; 
+            }
         </style>
     </head>
-    <body>
-        <div class="container mt-5 niramit-regular">
-            <h2 class="text-center niramit-bold">
-                โปรแกรมคำนวณเงินเดือน <br />
-                สำหรับคุณวุฒิปริญญาตรี (แท่งวิขาการ)
-            </h2>
-            <div class="row justify-content-center mt-5">
-                <div class="col-md-6">
-                    <form id="salaryForm">
-                        <div class="form-group">
-                            <label for="salary">กรอกเงินเดือนปัจจุบัน (บาท):</label>
-                            <input type="number" class="form-control" id="salary" placeholder="กรุณากรอกเงินเดือน (บาท)" />
+    <body class="niramit-regular">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+                    <div class="card">
+                        <div class="card-body">
+                            <h2 class="text-center">การปรับฐานเงินเดือน รอบแรก 2567</h2>
+                            <h6 class="text-center">กรณี บรรจุแต่งตั้งก่อน 1 พ.ค. 2567 (เงินเดือนชดเชย) </h6><br>
+                            <form id="salaryForm">
+                                <div class="form-group">
+                                    <label for="degreeType" class="form-label">วุฒิการศึกษา</label>
+                                    <select class="form-control" id="degreeType">
+                                        <option value="ปวส.">ปวส.</option>
+                                        <option value="ปริญญาตรี">ปริญญาตรี</option>
+                                        <option value="ปริญญาโท">ปริญญาโท หรือเทียบเท่า</option>
+                                        <option value="ปริญญาเอก">ปริญญาเอก หรือเทียบเท่า</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="salary" class="form-label">เงินเดือน (บาท)</label>
+                                    <input type="number" class="form-control" id="salary" placeholder="กรอกเงินเดือน" />
+                                    <div id="notes" class="form-text text-muted">
+                                        *กรอกเงินเดือนหลังการประเมินรอบ เม.ย. 2567
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block">คำนวณเงินเดือน</button>
+                            </form>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-block">
-                            คำนวณเงินเดือนปรับใหม่
-                        </button>
-                    </form>
+                    </div>
                 </div>
             </div>
-            <div class="comment">
-                โปรแกรมคำนวณเงินเดือนสำหรับคุณวุฒิปริญญาตรี (แท่งวิขาการ) <br>
-                V1.2.0 เป็นเพียงตัวช่วยคำนวณเบื้องต้นสำหรับการปรับเงินเดือนแบบใหม่ <br>
-                *ไม่สามารถใช้อ้างอิงอย่างเป็นทางการได้
-            </div>           
         </div>
 
-        <!-- Bootstrap JS and dependencies -->
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+        <!-- Bootstrap JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <!-- SweetAlert2 JS -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script>
-            // Function to calculate and display the result
-            function calculateSalaryAdjustment(salary) {
-                let result;
+            // เมื่อฟอร์มถูกส่ง
+            $("#salaryForm").submit(function (event) {
+                // ป้องกันการส่งฟอร์มไปยัง URL ที่ระบุในแอ็ตทริบิวต์ action
+                event.preventDefault();
 
-                if (salary >= 15060 && salary <= 17290) {
-                    result = "18,520 บาท (ขั้น 14.5)";
-                } else if (salary >= 17570 && salary <= 19480) {
-                    result = "20,770 บาท (ขั้น 18)";
-                } else if (salary >= 20120 && salary <= 21880) {
-                    result = "22,600 บาท (ขั้น 20.5)";
-                } else if (salary >= 22230 && salary <= 23710) {
-                    result = "24,870 บาท (ขั้น 23.5)";
-                } else if (salary >= 24090 && salary <= 26080) {
-                    result = "26,920 บาท (ขั้น 26)";
-                } else if (salary >= 26500 && salary <= 28250) {
-                    result = "28,690  บาท";
-                } else if (salary >= 28690 && salary <= 30020) {
-                    result = "30,790 บาท";
-                } else if (salary >= 30220 && salary <= 33000) {
-                    result = "33,560 บาท";
-                } else {
-                    result = "ไม่พบข้อมูล สำหรับคุณวุฒิปริญญาตรี (แท่งวิขาการ)";
+                // รับค่าจากฟอร์ม
+                var degreeType = $("#degreeType").val();
+                var salary = parseInt($("#salary").val());
+
+                var originalSalary = salary; // เก็บเงินเดือนก่อนปรับ
+                var addedAmount = salary - originalSalary; // เก็บจำนวนเงินที่เพิ่มเข้าไป
+
+                // ตรวจสอบเงื่อนไขและแสดง SweetAlert2 หากเงื่อนไขไม่ถูกต้อง
+                if (
+                    (degreeType === "ปวส." && (salary < 11500 || salary > 24410)) ||
+                    (degreeType === "ปริญญาตรี" && (salary < 15000 || salary > 33110)) ||
+                    (degreeType === "ปริญญาโท" && (salary < 17500 || salary > 38810)) ||
+                    (degreeType === "ปริญญาเอก" && (salary < 21000 || salary > 47510))
+                ) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "ขออภัย...",
+                        text: "ฐานเงินเดือนไม่เข้าหลักเกณฑ์การปรับฐานเงินเดือน รอบแรก 2567",
+                        footer: '<a href="images/IMG01.jpg" target="_blank">ดูข้อมูลเพิ่มเติม</a>',
+                    });
+                    return; // ออกจากการทำงานของฟังก์ชัน
+                } // ปรับเงินเดือนตามเงื่อนไขที่กำหนด
+                switch (degreeType) {
+                    case "ปวส.":
+                        if (salary >= 11500 && salary <= 13600) {
+                            addedAmount = 1150;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 14560);
+                        } else if (salary >= 13610 && salary <= 15700) {
+                            addedAmount = 950;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 16460);
+                        } else if (salary >= 15710 && salary <= 17800) {
+                            addedAmount = 750;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 18360);
+                        } else if (salary >= 17810 && salary <= 19900) {
+                            addedAmount = 550;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 20260);
+                        } else if (salary >= 19910 && salary <= 22000) {
+                            addedAmount = 350;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 22160);
+                        } else if (salary >= 22010 && salary <= 24400) {
+                            addedAmount = 150;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 24410);
+                        } else {
+                            addedAmount = "ฐานเงินเดือนไม่เข้าหลักเกณฑ์การปรับฐานเงินเดือน รอบแรก 2567";
+                        }
+                        break;
+                    case "ปริญญาตรี":
+                        if (salary >= 15000 && salary <= 17200) {
+                            addedAmount = 1500;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 18510);
+                        } else if (salary >= 17210 && salary <= 19400) {
+                            addedAmount = 1300;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 20510);
+                        } else if (salary >= 19410 && salary <= 21600) {
+                            addedAmount = 1100;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 22510);
+                        } else if (salary >= 21610 && salary <= 23800) {
+                            addedAmount = 900;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 24510);
+                        } else if (salary >= 23810 && salary <= 26000) {
+                            addedAmount = 700;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 26510);
+                        } else if (salary >= 26010 && salary <= 28200) {
+                            addedAmount = 500;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 28510);
+                        } else if (salary >= 28210 && salary <= 30400) {
+                            addedAmount = 300;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 30510);
+                        } else if (salary >= 30410 && salary <= 33100) {
+                            addedAmount = 100;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 33110);
+                        } else {
+                            addedAmount = "ฐานเงินเดือนไม่เข้าหลักเกณฑ์การปรับฐานเงินเดือน รอบแรก 2567";
+                        }
+                        break;
+                    case "ปริญญาโท":
+                        if (salary >= 17500 && salary <= 19800) {
+                            addedAmount = 1750;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 21360);
+                        } else if (salary >= 19810 && salary <= 22100) {
+                            addedAmount = 1550;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 23460);
+                        } else if (salary >= 22110 && salary <= 24400) {
+                            addedAmount = 1350;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 25560);
+                        } else if (salary >= 24410 && salary <= 26700) {
+                            addedAmount = 1150;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 27660);
+                        } else if (salary >= 26710 && salary <= 29000) {
+                            addedAmount = 950;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 29760);
+                        } else if (salary >= 29010 && salary <= 31300) {
+                            addedAmount = 750;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 31860);
+                        } else if (salary >= 31310 && salary <= 33600) {
+                            addedAmount = 550;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 33960);
+                        } else if (salary >= 33610 && salary <= 35900) {
+                            addedAmount = 350;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 36060);
+                        } else if (salary >= 35910 && salary <= 38800) {
+                            addedAmount = 150;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 38810);
+                        } else {
+                            addedAmount = "ฐานเงินเดือนไม่เข้าหลักเกณฑ์การปรับฐานเงินเดือน รอบแรก 2567";
+                        }
+                        break;
+                    case "ปริญญาเอก":
+                        if (salary >= 21000 && salary <= 23400) {
+                            addedAmount = 2100;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 25310);
+                        } else if (salary >= 23410 && salary <= 25800) {
+                            addedAmount = 1900;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 27510);
+                        } else if (salary >= 25810 && salary <= 28200) {
+                            addedAmount = 1700;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 29710);
+                        } else if (salary >= 28210 && salary <= 30600) {
+                            addedAmount = 1500;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 31910);
+                        } else if (salary >= 30610 && salary <= 33000) {
+                            addedAmount = 1300;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 34110);
+                        } else if (salary >= 33010 && salary <= 35400) {
+                            addedAmount = 1100;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 36310);
+                        } else if (salary >= 35410 && salary <= 37800) {
+                            addedAmount = 900;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 38510);
+                        } else if (salary >= 37810 && salary <= 40200) {
+                            addedAmount = 700;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 40710);
+                        } else if (salary >= 40210 && salary <= 42600) {
+                            addedAmount = 500;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 42910);
+                        } else if (salary >= 42610 && salary <= 45000) {
+                            addedAmount = 300;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 45110);
+                        } else if (salary >= 45010 && salary <= 47500) {
+                            addedAmount = 100;
+                            salary += addedAmount;
+                            salary = Math.min(salary, 47510);
+                        } else {
+                            addedAmount = "เงินเดือนไม่เข้าหลักเกณฑ์การปรับฐานเงินเดือน รอบแรก 2567";
+                        }
+                        break;
+                    default:
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Something went wrong!",
+                            footer: '<a href="#">Why do I have this issue?</a>',
+                        });
+                        break;
                 }
 
-                return result;
-            }
+                // แปลงเงินเดือนเป็นรูปแบบที่ถูกต้อง (เพิ่ม , คั่นเลข)
+                var formatCurrency = function (value) {
+                    var number = parseInt(value);
+                    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                };
 
-            // Function to handle form submission
-            document.getElementById("salaryForm").addEventListener("submit", function (event) {
-                event.preventDefault(); // Prevent default form submission
-                const salary = parseFloat(document.getElementById("salary").value);
-                const result = calculateSalaryAdjustment(salary);
-                // Display result in a modal
-                $("#resultModal").modal("show");
-                document.getElementById("result").textContent = result;
+                Swal.fire({
+                    title: "ผลลัพธ์การปรับฐานเงินเดือน <br> รอบแรก 2567",
+                    html:
+                        "วุฒิการศึกษา: <b>" +
+                        degreeType +
+                        "</b>" +
+                        "<br>เงินเดือนก่อนปรับ: <b>" +
+                        formatCurrency(originalSalary) +
+                        " บาท</b>" +
+                        "<br>เงินที่ได้เพิ่ม: <b>" +
+                        formatCurrency(addedAmount) +
+                        " บาท</b>" +
+                        "<br>เงินเดือนหลังปรับ: <b>" +
+                        formatCurrency(salary) +
+                        " บาท</b>",
+                    icon: "success",
+                });
             });
         </script>
-
-        <!-- Modal -->
-        <div class="modal fade niramit-regular" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title niramit-bold" id="resultModalLabel">
-                            ผลลัพธ์การปรับเงินเดือน
-                        </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p><b>ผลลัพธ์การปรับเงินเดือน:</b> <span id="result"></span></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                            Close
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </body>
+    
 </html>
